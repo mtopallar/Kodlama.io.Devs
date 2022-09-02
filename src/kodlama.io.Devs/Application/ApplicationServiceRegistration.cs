@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Features.ProgrammingLanguages.Rules;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace Application
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddScoped<ProgrammingLanguageBusinessRules>();
+
             // validation, authorization, caching, log, busines rules...
 
             return services;
