@@ -29,5 +29,7 @@ namespace Application.Features.ProgrammingLanguages.Rules
         {
             if (programmingLanguage == null) throw new BusinessException("Requested programming language does not exists.");
         }
+
+        //Id ve Name harici propertysi olan nesneler için ProgrammingLanguageNameCanNotBeDuplicatedWhenUpdated yazıp id != id olan kontrol gerekecek.
     }
 }
