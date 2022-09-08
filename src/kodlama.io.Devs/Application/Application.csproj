@@ -7,8 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Features\SubTechnologies\" />
 		<Folder Include="Features\ProgrammingLanguages\Constants\" />
+		<Folder Include="Features\SubTechnologies\Commands\" />
+		<Folder Include="Features\SubTechnologies\Constants\" />
+		<Folder Include="Features\SubTechnologies\Rules\" />
 	</ItemGroup>
 
 	<ItemGroup>
