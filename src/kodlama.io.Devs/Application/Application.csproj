@@ -7,6 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Folder Include="Features\SubTechnologies\" />
 		<Folder Include="Features\ProgrammingLanguages\Constants\" />
 	</ItemGroup>
 
