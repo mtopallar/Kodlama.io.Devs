@@ -1,4 +1,6 @@
 ﻿using Application.Features.SubTechnologies.Commands.CreateSubTechnology;
+using Application.Features.SubTechnologies.Commands.DeleteSubTechnology;
+using Application.Features.SubTechnologies.Commands.UpdateSubTechnology;
 using Application.Features.SubTechnologies.Dtos;
 using Application.Features.SubTechnologies.Models;
 using Application.Features.SubTechnologies.Queries.GetListSubTechnology;
@@ -26,6 +28,22 @@ namespace WebAPI.Controllers
         {
            CreatedSubTechnologyDto result = await Mediator.Send(createSubTechnologyCommand);
             return Created("", result);
+        }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateSubTechnologyCommand updateSubTechnologyCommand)
+        {
+            UpdatedSubTechnologyDto result = await Mediator.Send(updateSubTechnologyCommand);
+
+            return Ok(result);
+        }
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> Delete([FromQuery] DeleteSubTechnologyCommand deleteSubTechnologyCommand)
+        {
+            DeletedSubTechnologyDto result = await Mediator.Send(deleteSubTechnologyCommand);
+
+            return Ok(result);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace Application.Features.SubTechnologies.Profiles
             CreateMap<IPaginate<SubTechnology>, SubTechnologyListModel>().ReverseMap();
             CreateMap<SubTechnology, CreatedSubTechnologyDto>().ReverseMap();
             CreateMap<SubTechnology,CreateSubTechnologyCommand>().ReverseMap();
+            CreateMap<SubTechnology, UpdatedSubTechnologyDto>();
+            CreateMap<SubTechnology, DeletedSubTechnologyDto>();
         }
     }
 }
