@@ -1,4 +1,5 @@
-﻿using Application.Features.SubTechnologies.Dtos;
+﻿using Application.Features.SubTechnologies.Commands.CreateSubTechnology;
+using Application.Features.SubTechnologies.Dtos;
 using Application.Features.SubTechnologies.Models;
 using AutoMapper;
 using Core.Persistence.Paging;
@@ -20,6 +21,8 @@ namespace Application.Features.SubTechnologies.Profiles
                 .ReverseMap();
 
             CreateMap<IPaginate<SubTechnology>, SubTechnologyListModel>().ReverseMap();
+            CreateMap<SubTechnology, CreatedSubTechnologyDto>().ReverseMap();
+            CreateMap<SubTechnology,CreateSubTechnologyCommand>().ReverseMap();
         }
     }
 }
