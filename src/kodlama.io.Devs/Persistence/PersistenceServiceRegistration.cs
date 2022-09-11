@@ -22,8 +22,7 @@ namespace Persistence
             services.AddScoped<ISubTechnologyRepository, SubTechnologyRepository>();
             services.AddScoped<IUserWebAddressRepository, UserWebAddressRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();            
-            services.AddScoped<ITokenHelper, JwtHelper>();
+            services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();  
 
             return services;
         }

@@ -18,6 +18,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
+builder.Services.AddSecurityServices();
 
 // Token Options
 var tokenOptions = builder.Configuration.GetSection(key: "TokenOptions").Get<TokenOptions>();
