@@ -12,7 +12,7 @@ namespace Domain.Entities
     {
         public int UserId { get; set; }
         public string GithubAddress { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ApplicationUser? ApplicationUser { get; set; }
 
         public UserWebAddress()
         {

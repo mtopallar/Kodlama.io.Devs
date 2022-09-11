@@ -1,4 +1,5 @@
 ﻿using Application.Services.Repositories;
+using Core.Security.JWT;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +21,9 @@ namespace Persistence
             services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
             services.AddScoped<ISubTechnologyRepository, SubTechnologyRepository>();
             services.AddScoped<IUserWebAddressRepository, UserWebAddressRepository>();
-            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();            
+            services.AddScoped<ITokenHelper, JwtHelper>();
 
             return services;
         }

@@ -1,6 +1,8 @@
 ﻿using Application.Features.ProgrammingLanguages.Rules;
 using Application.Features.SubTechnologies.Rules;
+using Application.Features.Users.Rules;
 using Application.Features.UserWebAddresses.Rules;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using MediatR;
@@ -26,6 +28,10 @@ namespace Application
 
             services.AddScoped<SubTechnologyBusinessRules>();
             services.AddScoped<UserWebAddressBusinessRules>();
+            services.AddScoped<UserBusinessRules>();
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
+            
 
             // validation, authorization, caching, log, busines rules...
 
