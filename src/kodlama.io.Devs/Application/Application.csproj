@@ -11,12 +11,9 @@
 		<Folder Include="Features\Auths\Models\" />
 		<Folder Include="Features\Auths\Queries\" />
 		<Folder Include="Features\Auths\Profiles\" />
+		<Folder Include="Features\OperationClaims\Constants\" />
 		<Folder Include="Features\ProgrammingLanguages\Constants\" />
 		<Folder Include="Features\SubTechnologies\Constants\" />
-		<Folder Include="Features\Users\Constants\" />
-		<Folder Include="Features\Users\Dtos\" />
-		<Folder Include="Features\Users\Models\" />
-		<Folder Include="Features\Users\Queries\" />
 		<Folder Include="Features\UserWebAddresses\Constants\" />
 		<Folder Include="Features\UserWebAddresses\Models\" />
 		<Folder Include="Features\UserWebAddresses\Queries\" />

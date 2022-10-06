@@ -1,7 +1,7 @@
 ﻿using Application.Features.Auths.Rules;
+using Application.Features.OperationClaims.Rules;
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Features.SubTechnologies.Rules;
-using Application.Features.Users.Rules;
 using Application.Features.UserWebAddresses.Rules;
 using Application.Services.AuthService;
 using Core.Application.Pipelines.Authorization;
@@ -23,17 +23,18 @@ namespace Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddScoped<ProgrammingLanguageBusinessRules>();
+            services.AddMediatR(Assembly.GetExecutingAssembly());            
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
+            services.AddScoped<ProgrammingLanguageBusinessRules>();
             services.AddScoped<SubTechnologyBusinessRules>();
-            services.AddScoped<UserWebAddressBusinessRules>();
-            services.AddScoped<UserBusinessRules>();
+            services.AddScoped<UserWebAddressBusinessRules>();            
             services.AddScoped<AuthBusinessRules>();
+            services.AddScoped<OperationClaimBusinessRules>();
+
             services.AddScoped<IAuthService, AuthManager>();
 
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>)); //metod bazlı aspect
             
 
