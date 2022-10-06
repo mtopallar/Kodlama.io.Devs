@@ -15,8 +15,7 @@ namespace Persistence.Contexts
         protected IConfiguration Configuration { get; set; }
         public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
         public DbSet<SubTechnology> SubTechnologies { get; set; }
-        public DbSet<UserWebAddress> UserWebAddresses { get; set; }
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<UserWebAddress> UserWebAddresses { get; set; }        
         public DbSet<User> Users { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
@@ -53,18 +52,13 @@ namespace Persistence.Contexts
                 e.Property(u => u.Id).HasColumnName("Id");
                 e.Property(u => u.UserId).HasColumnName("UserId");
                 e.Property(u => u.GithubAddress).HasColumnName("GithubAdress");
-                e.HasOne(u => u.ApplicationUser);
+                e.HasOne(u => u.User);
             });
 
             modelBuilder.Entity<User>(e =>
             {
                 e.ToTable("Users").HasKey(k => k.Id);
-                e.Property(u => u.Id).HasColumnName("Id");                
-            });
-
-            modelBuilder.Entity<ApplicationUser>(e =>
-            {
-                e.ToTable("Users");
+                e.Property(u => u.Id).HasColumnName("Id");
                 e.Property(u => u.FirstName).HasColumnName("FirstName");
                 e.Property(u => u.LastName).HasColumnName("LastName");
                 e.Property(u => u.Email).HasColumnName("Email");
@@ -73,9 +67,8 @@ namespace Persistence.Contexts
                 e.Property(u => u.AuthenticatorType).HasColumnName("AuthenticatorType");
                 e.HasMany(u => u.UserOperationClaims);
                 e.HasMany(u => u.RefreshTokens);
-                e.HasOne(u => u.UserWebAddress).WithOne(x=>x.ApplicationUser).HasForeignKey<UserWebAddress>(x=> x.UserId);
             });
-
+            
             modelBuilder.Entity<OperationClaim>(e =>
             {
                 e.ToTable("OperationClaims").HasKey(k => k.Id);

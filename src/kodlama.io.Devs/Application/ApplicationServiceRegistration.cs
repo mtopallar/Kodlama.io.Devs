@@ -1,7 +1,9 @@
-﻿using Application.Features.ProgrammingLanguages.Rules;
+﻿using Application.Features.Auths.Rules;
+using Application.Features.ProgrammingLanguages.Rules;
 using Application.Features.SubTechnologies.Rules;
 using Application.Features.Users.Rules;
 using Application.Features.UserWebAddresses.Rules;
+using Application.Services.AuthService;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
@@ -29,8 +31,10 @@ namespace Application
             services.AddScoped<SubTechnologyBusinessRules>();
             services.AddScoped<UserWebAddressBusinessRules>();
             services.AddScoped<UserBusinessRules>();
+            services.AddScoped<AuthBusinessRules>();
+            services.AddScoped<IAuthService, AuthManager>();
 
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>)); //metod bazlı aspect
             
 
             // validation, authorization, caching, log, busines rules...
