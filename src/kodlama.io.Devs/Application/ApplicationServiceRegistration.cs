@@ -2,8 +2,11 @@
 using Application.Features.OperationClaims.Rules;
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Features.SubTechnologies.Rules;
+using Application.Features.UserOperationClaims.Rules;
 using Application.Features.UserWebAddresses.Rules;
 using Application.Services.AuthService;
+using Application.Services.OperationClaimService;
+using Application.Services.UserService;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
@@ -31,8 +34,11 @@ namespace Application
             services.AddScoped<UserWebAddressBusinessRules>();            
             services.AddScoped<AuthBusinessRules>();
             services.AddScoped<OperationClaimBusinessRules>();
+            services.AddScoped<UserOperationClaimBusinessRules>();
 
             services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<IUserService, UserManager>(); //user var mı null mı doğrulamak için kullandım.
+            services.AddScoped<IOperationClaimService, OperationClaimManager>(); //operation claim var mı null mı doğrulamak için kullandım.
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>)); //metod bazlı aspect

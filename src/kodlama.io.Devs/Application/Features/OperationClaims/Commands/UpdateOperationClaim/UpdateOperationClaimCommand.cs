@@ -32,14 +32,14 @@ namespace Application.Features.OperationClaims.Commands.UpdateOperationClaim
 
             public async Task<UpdatedOperationClaimDto> Handle(UpdateOperationClaimCommand request, CancellationToken cancellationToken)
             {
-                OperationClaim? operationClaimToUpdate = await _operationClaimRepository.GetAsync(o => o.Id == request.Id);
+                OperationClaim? tryFindOperationClaimForUpdate = await _operationClaimRepository.GetAsync(o => o.Id == request.Id);
 
-                _operationClaimBusinessRules.OperationClaimShouldExistWhenRequesed(operationClaimToUpdate);
-                await _operationClaimBusinessRules.OperationClaimNameCanNotDuplicateWhenUpdated(operationClaimToUpdate);
+                _operationClaimBusinessRules.OperationClaimShouldExistWhenRequesed(tryFindOperationClaimForUpdate);
+                await _operationClaimBusinessRules.OperationClaimNameCanNotDuplicateWhenUpdated(tryFindOperationClaimForUpdate);
 
-                operationClaimToUpdate.Name = request.Name;
+                tryFindOperationClaimForUpdate.Name = request.Name;
 
-                OperationClaim updatedOperationClaim = await _operationClaimRepository.UpdateAsync(operationClaimToUpdate);
+                OperationClaim updatedOperationClaim = await _operationClaimRepository.UpdateAsync(tryFindOperationClaimForUpdate);
                 UpdatedOperationClaimDto updatedOperationClaimDto = _mapper.Map<UpdatedOperationClaimDto>(updatedOperationClaim);
 
                 return updatedOperationClaimDto;

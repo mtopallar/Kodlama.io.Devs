@@ -33,16 +33,16 @@ namespace Application.Features.SubTechnologies.Commands.UpdateSubTechnology
 
             public async Task<UpdatedSubTechnologyDto> Handle(UpdateSubTechnologyCommand request, CancellationToken cancellationToken)
             {
-                SubTechnology? tryFindSubTechNolojiForUpdate = await _subTechnologyRepository.GetAsync(s => s.Id == request.Id);
+                SubTechnology? tryFindSubTechnologyForUpdate = await _subTechnologyRepository.GetAsync(s => s.Id == request.Id);
 
-                _subTechnologyBusinessRules.SubTechnologyExistsWhenRequested(tryFindSubTechNolojiForUpdate);
+                _subTechnologyBusinessRules.SubTechnologyExistsWhenRequested(tryFindSubTechnologyForUpdate);
 
-                tryFindSubTechNolojiForUpdate.ProgrammingLanguageId = request.ProgrammingLanguageId;
-                tryFindSubTechNolojiForUpdate.Name = request.Name;
+                tryFindSubTechnologyForUpdate.ProgrammingLanguageId = request.ProgrammingLanguageId;
+                tryFindSubTechnologyForUpdate.Name = request.Name;
 
-                await _subTechnologyBusinessRules.SubTechnologyNameCanNotBeDuplicatedWhenUpdated(tryFindSubTechNolojiForUpdate);
+                await _subTechnologyBusinessRules.SubTechnologyNameCanNotBeDuplicatedWhenUpdated(tryFindSubTechnologyForUpdate);
 
-                SubTechnology updatedSubTechnology = await _subTechnologyRepository.UpdateAsync(tryFindSubTechNolojiForUpdate);
+                SubTechnology updatedSubTechnology = await _subTechnologyRepository.UpdateAsync(tryFindSubTechnologyForUpdate);
                 UpdatedSubTechnologyDto mappedSubTechnology = _mapper.Map<UpdatedSubTechnologyDto>(updatedSubTechnology);
 
                 return mappedSubTechnology;

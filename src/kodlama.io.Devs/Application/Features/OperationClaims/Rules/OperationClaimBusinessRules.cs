@@ -33,7 +33,7 @@ namespace Application.Features.OperationClaims.Rules
         public async Task OperationClaimNameCanNotDuplicateWhenUpdated(OperationClaim operationClaim)
         {
             OperationClaim? result = await _operationClaimRepository.GetAsync(o => o.Name == operationClaim.Name && o.Id != operationClaim.Id);
-            if (result != null) throw new BusinessException("Operation cliam you're trying to update already exists.");
+            if (result != null) throw new BusinessException("Operation claim you're trying to update already exists.");
         }
     }
 }

@@ -14,6 +14,7 @@
 		<Folder Include="Features\OperationClaims\Constants\" />
 		<Folder Include="Features\ProgrammingLanguages\Constants\" />
 		<Folder Include="Features\SubTechnologies\Constants\" />
+		<Folder Include="Features\UserOperationClaims\Constants\" />
 		<Folder Include="Features\UserWebAddresses\Constants\" />
 		<Folder Include="Features\UserWebAddresses\Models\" />
 		<Folder Include="Features\UserWebAddresses\Queries\" />

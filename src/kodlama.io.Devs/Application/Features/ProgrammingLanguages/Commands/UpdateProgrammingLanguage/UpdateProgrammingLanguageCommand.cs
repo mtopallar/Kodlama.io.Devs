@@ -31,10 +31,10 @@ namespace Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLa
             }
 
             public async Task<UpdatedProgrammingLanguageDto> Handle(UpdateProgrammingLanguageCommand request, CancellationToken cancellationToken)
-            {
-                await _programmingLanguageBusinessRules.ProgrammingLanguageNameCanNotBeDuplicatedWhenInserted(request.Name);
+            {                
                 ProgrammingLanguage? tryFindExistingProgrammingLanguageForUpdate = await _programmingLanguageRepository.GetAsync(p => p.Id == request.Id);
                 _programmingLanguageBusinessRules.ProgrammingLanguageShouldExistWhenRequested(tryFindExistingProgrammingLanguageForUpdate);
+                await _programmingLanguageBusinessRules.ProgrammingLanguageNameCanNotBeDuplicatedWhenUpdated(tryFindExistingProgrammingLanguageForUpdate);                
 
                 tryFindExistingProgrammingLanguageForUpdate.Name = request.Name;
 

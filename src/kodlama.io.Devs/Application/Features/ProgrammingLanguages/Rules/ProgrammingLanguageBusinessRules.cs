@@ -30,6 +30,11 @@ namespace Application.Features.ProgrammingLanguages.Rules
             if (programmingLanguage == null) throw new BusinessException("Requested programming language does not exists.");
         }
 
-        //Id ve Name harici propertysi olan nesneler için ProgrammingLanguageNameCanNotBeDuplicatedWhenUpdated yazıp id != id olan kontrol gerekecek.
+        public async Task ProgrammingLanguageNameCanNotBeDuplicatedWhenUpdated(ProgrammingLanguage programmingLanguage)
+        {
+            ProgrammingLanguage? result = await _programmingLanguageRepository.GetAsync(p => p.Name == programmingLanguage.Name && p.Id != programmingLanguage.Id);
+            if (result != null) throw new BusinessException("Programming language you're trying to update already exists.");
+        }
+
     }
 }
